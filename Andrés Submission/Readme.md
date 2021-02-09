@@ -60,4 +60,27 @@ The output reads as follows:
 
 Something good to note here is that the code also allows the possibility of printing out the solution at an early stage. Then I checked whether the solution was actually evolving in the way that it should. If we iterate for the first `1000` time-steps, `MAE` is less than `0.01`.  After a while, the resulting scheme is usually poor in terms of $\Delta x$, as the number of spatial terms is small.
 
+Another idea that might come up here is to repeat the process starting at other times:
+```
+    mpirun -np 10 ./Heat .0001
 
+    dx = 0.00010018, dt = 3.34526e-09, dt/dx² = 0.333323
+
+    True and numerical values at M=9982 space points, N=29893 time points, at time T=0.0001:
+
+    True values           Numerical solutions
+
+Printing first 5 values
+    0            0
+    0.0164217            0.0164216
+    0.0328428            0.0328428
+    0.0492629            0.0492629
+    0.0656815            0.0656814
+    Printing last 5 values
+    -0.0411172            -0.0654551
+    -0.0308397            -0.0490939
+    -0.0205606            -0.0327305
+    -0.0102806            -0.0163656
+    6.89697e-15            0
+    MAE: 0.363139
+```
